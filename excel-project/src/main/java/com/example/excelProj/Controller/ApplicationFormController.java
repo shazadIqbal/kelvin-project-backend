@@ -60,7 +60,11 @@ public class ApplicationFormController {
     public ApiResponse<String> trigerEmail(@PathVariable("id") Long id, @PathVariable("email") String recevierEmail){
         return  applicationFormService.trigerEmail(id,recevierEmail);
     }
+    @GetMapping("/applicant-form/{id}")
+    public ApiResponse<ApplicantForm> getPortfolio(@PathVariable("id") Long id){
+        return applicationFormService.getPortfolio(id);
 
+    }
 
 
 
