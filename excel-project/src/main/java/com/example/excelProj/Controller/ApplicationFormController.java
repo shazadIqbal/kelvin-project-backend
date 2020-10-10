@@ -1,16 +1,9 @@
 package com.example.excelProj.Controller;
 
 import com.example.excelProj.Commons.ApiResponse;
-import com.example.excelProj.Dto.ClientFormDTO;
-import com.example.excelProj.Model.ActivityLogs;
 import com.example.excelProj.Model.ApplicantForm;
-import com.example.excelProj.Model.ClientData;
 import com.example.excelProj.Service.ApplicationFormService;
-import com.example.excelProj.Service.ClientFormService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,7 +43,7 @@ public class ApplicationFormController {
 
 
     }
-    @DeleteMapping("/")
+    @DeleteMapping("/applicant-form/{id}")
     public ApiResponse<ApplicantForm> delete(@PathVariable ("id") Long id){
         return applicationFormService.delete(id);
     }

@@ -1,25 +1,15 @@
 package com.example.excelProj.Service;
 
 import com.example.excelProj.Commons.ApiResponse;
-import com.example.excelProj.Dto.ClientFormDTO;
-import com.example.excelProj.Model.ActivityLogs;
 import com.example.excelProj.Model.ApplicantForm;
-import com.example.excelProj.Model.ClientData;
-import com.example.excelProj.Model.User;
-import com.example.excelProj.Repository.ActivityLogsRepository;
 import com.example.excelProj.Repository.ApplicantFormRepository;
-import com.example.excelProj.Repository.ClientDataRepository;
-import com.example.excelProj.Repository.UserDaoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +24,9 @@ public class ApplicationFormService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    Logger logger = LoggerFactory.getLogger(ApplicationFormService.class);
+
 
     public ApplicantForm save(ApplicantForm applicantForm) {
         return applicationFormRepository.save(applicantForm);
@@ -73,25 +66,36 @@ public class ApplicationFormService {
     }
 
     public ApiResponse<String> trigerEmail(Long id, String recevierEmail) {
+
         Optional<ApplicantForm> applicantForm=applicationFormRepository.findById(id);
         if(applicantForm.isPresent()){
-            sendEmail(recevierEmail);
-            return new ApiResponse<>(200,"Email Send Successfully",null);
+            if(sendEmail(recevierEmail)){
+                logger.info("Email send Successful");
+                return new ApiResponse<>(200,"Email Send Successfully",null);
+            }
+            else{
+                logger.info("Email failed");
+                return new ApiResponse<>(404,"Applicant doesnot exsist","didnot Find the Applicant");
+            }
         }
         return new ApiResponse<>(404,"Applicant doesnot exsist","didnot Find the Applicant");
 
 
     }
 
-    void sendEmail(String recevierEmail) {
+    boolean sendEmail(String recevierEmail) {
+        try {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(recevierEmail);
 
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(recevierEmail);
+            msg.setSubject("Testing from Spring Boot");
+            msg.setText("Hello World \n Spring Boot Email");
 
-        msg.setSubject("Testing from Spring Boot");
-        msg.setText("Hello World \n Spring Boot Email");
-
-        javaMailSender.send(msg);
+            javaMailSender.send(msg);
+            return true;
+        }catch(Exception e){e.printStackTrace();
+            return false;
+        }
 
     }
 
