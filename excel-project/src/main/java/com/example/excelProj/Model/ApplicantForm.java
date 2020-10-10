@@ -34,11 +34,15 @@ public class ApplicantForm implements Serializable {
     @Column(name = "recevier_email")
     private String recevierEmail;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "home_number")
+    private String homeNumber;
+
+    @Column(name = "cell_number")
+    private String cellNumber;
 
     @Column(name = "address")
     private String address;
+
 
     @Column(name = "gender")
     private String gender;
@@ -62,17 +66,20 @@ public class ApplicantForm implements Serializable {
     @Column(name = "resume_content_type")
     private String resumeContentType;
 
+    @Lob
     @Column(name = "employee_application")
-    private Boolean employeeApplication;
+    private byte[] employeeApplication;
 
     @Column(name = "employee_orientation")
     private Boolean employeeOrientation;
 
+    @Lob
     @Column(name = "employee_identification")
-    private Boolean employeeIdentification;
+    private byte[] employeeIdentification;
 
+    @Lob
     @Column(name = "security_clearance")
-    private Boolean securityClearance;
+    private byte[] securityClearance;
 
     @Column(name = "medical_clearance")
     private Boolean medicalClearance;
@@ -82,6 +89,60 @@ public class ApplicantForm implements Serializable {
 
     @Column(name = "emergency_contact")
     private Boolean emergencyContact;
+
+    @Column(name= "visa_work_options")
+    private String visaWorkOptions;
+
+    @Lob
+    @Column(name= "social_media_links")
+    private String socialMediaLinks;
+
+    @Column(name = "kpi_certified")
+    private Boolean kpiCertified;
+
+    @Column(name = "emergency_name")
+    private String emergencyName;
+
+    @Column(name = "emergency_phone")
+    private String emergencyPhone;
+
+    @Column(name = "emergency_address")
+    private String emergencyAddress;
+
+    @Column(name = "profile_id")
+    private String profileId;
+
+
+    @Column(name = "zip_code")
+    private String zipCode;
+
+    @Column(name = "province")
+    private String province;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "zip_code_for_emergency")
+    private String zipCodeForEmergency;
+
+    @Column(name = "province_for_emergency")
+    private String provinceForEmergency;
+
+    @Column(name = "city_for_emergency")
+    private String cityForEmergency;
+
+    @Column(name = "country_for_emergency")
+    private String countryForEmergency;
+
+    @Column(name = "canadian_citizenship_details")
+    private String canadianCitizenshipDetails;
+
+    @Column(name = "visa_expiry_date")
+    private String visaExpiryDate;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -99,6 +160,19 @@ public class ApplicantForm implements Serializable {
     public ApplicantForm userImage(byte[] userImage) {
         this.userImage = userImage;
         return this;
+    }
+
+    public ApplicantForm kpiCertified(Boolean kpiCertified) {
+        this.kpiCertified = kpiCertified;
+        return this;
+    }
+
+    public Boolean getKpiCertified() {
+        return kpiCertified;
+    }
+
+    public void setKpiCertified(Boolean kpiCertified) {
+        this.kpiCertified = kpiCertified;
     }
 
     public void setUserImage(byte[] userImage) {
@@ -157,17 +231,32 @@ public class ApplicantForm implements Serializable {
         this.recevierEmail = recevierEmail;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public ApplicantForm phone(String phone) {
-        this.phone = phone;
+
+    public ApplicantForm homeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public ApplicantForm cellNumber(String cellNumber) {
+        this.cellNumber = cellNumber;
+        return this;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
+    public String getCellNumber() {
+        return cellNumber;
+    }
+
+    public void setCellNumber(String cellNumber) {
+        this.cellNumber = cellNumber;
     }
 
     public String getAddress() {
@@ -177,6 +266,19 @@ public class ApplicantForm implements Serializable {
     public ApplicantForm address(String address) {
         this.address = address;
         return this;
+    }
+
+    public ApplicantForm socialMediaLinks(String socialMediaLinks) {
+        this.socialMediaLinks = socialMediaLinks;
+        return this;
+    }
+
+    public String getSocialMediaLinks() {
+        return socialMediaLinks;
+    }
+
+    public void setSocialMediaLinks(String socialMediaLinks) {
+        this.socialMediaLinks = socialMediaLinks;
     }
 
     public void setAddress(String address) {
@@ -274,18 +376,6 @@ public class ApplicantForm implements Serializable {
         this.resumeContentType = resumeContentType;
     }
 
-    public Boolean isEmployeeApplication() {
-        return employeeApplication;
-    }
-
-    public ApplicantForm employeeApplication(Boolean employeeApplication) {
-        this.employeeApplication = employeeApplication;
-        return this;
-    }
-
-    public void setEmployeeApplication(Boolean employeeApplication) {
-        this.employeeApplication = employeeApplication;
-    }
 
     public Boolean isEmployeeOrientation() {
         return employeeOrientation;
@@ -300,31 +390,19 @@ public class ApplicantForm implements Serializable {
         this.employeeOrientation = employeeOrientation;
     }
 
-    public Boolean isEmployeeIdentification() {
+
+
+    public byte[] getEmployeeIdentification() {
         return employeeIdentification;
     }
 
-    public ApplicantForm employeeIdentification(Boolean employeeIdentification) {
-        this.employeeIdentification = employeeIdentification;
-        return this;
-    }
-
-    public void setEmployeeIdentification(Boolean employeeIdentification) {
+    public void setEmployeeIdentification(byte[] employeeIdentification) {
         this.employeeIdentification = employeeIdentification;
     }
 
-    public Boolean isSecurityClearance() {
-        return securityClearance;
-    }
 
-    public ApplicantForm securityClearance(Boolean securityClearance) {
-        this.securityClearance = securityClearance;
-        return this;
-    }
 
-    public void setSecurityClearance(Boolean securityClearance) {
-        this.securityClearance = securityClearance;
-    }
+
 
     public Boolean isMedicalClearance() {
         return medicalClearance;
@@ -366,6 +444,148 @@ public class ApplicantForm implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+
+    public ApplicantForm visaWorkOptions(String visaWorkOptions) {
+        this.visaWorkOptions = visaWorkOptions;
+        return this;
+    }
+
+    public String getVisaWorkOptions() {
+        return visaWorkOptions;
+    }
+
+    public void setVisaWorkOptions(String visaWorkOptions) {
+        this.visaWorkOptions = visaWorkOptions;
+    }
+
+    public String getEmergencyName() {
+        return emergencyName;
+    }
+
+    public void setEmergencyName(String emergencyName) {
+        this.emergencyName = emergencyName;
+    }
+
+    public String getEmergencyPhone() {
+        return emergencyPhone;
+    }
+
+    public void setEmergencyPhone(String emergencyPhone) {
+        this.emergencyPhone = emergencyPhone;
+    }
+
+    public String getEmergencyAddress() {
+        return emergencyAddress;
+    }
+
+    public void setEmergencyAddress(String emergencyAddress) {
+        this.emergencyAddress = emergencyAddress;
+    }
+
+    public String getProfileId() {
+        return profileId;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setProfileId(String profileId) {
+        this.profileId = profileId;
+    }
+
+    public String getCanadianCitizenshipDetails() {
+        return canadianCitizenshipDetails;
+    }
+
+    public void setCanadianCitizenshipDetails(String canadianCitizenshipDetails) {
+        this.canadianCitizenshipDetails = canadianCitizenshipDetails;
+    }
+
+    public byte[] getEmployeeApplication() {
+        return employeeApplication;
+    }
+
+    public void setEmployeeApplication(byte[] employeeApplication) {
+        this.employeeApplication = employeeApplication;
+    }
+
+    public byte[] getSecurityClearance() {
+        return securityClearance;
+    }
+
+    public void setSecurityClearance(byte[] securityClearance) {
+        this.securityClearance = securityClearance;
+    }
+
+    public String getVisaExpiryDate() {
+        return visaExpiryDate;
+    }
+
+    public String getZipCodeForEmergency() {
+        return zipCodeForEmergency;
+    }
+
+    public void setZipCodeForEmergency(String zipCodeForEmergency) {
+        this.zipCodeForEmergency = zipCodeForEmergency;
+    }
+
+    public String getProvinceForEmergency() {
+        return provinceForEmergency;
+    }
+
+    public void setProvinceForEmergency(String provinceForEmergency) {
+        this.provinceForEmergency = provinceForEmergency;
+    }
+
+    public String getCityForEmergency() {
+        return cityForEmergency;
+    }
+
+    public void setCityForEmergency(String cityForEmergency) {
+        this.cityForEmergency = cityForEmergency;
+    }
+
+    public String getCountryForEmergency() {
+        return countryForEmergency;
+    }
+
+    public void setCountryForEmergency(String countryForEmergency) {
+        this.countryForEmergency = countryForEmergency;
+    }
+
+    public void setVisaExpiryDate(String visaExpiryDate) {
+        this.visaExpiryDate = visaExpiryDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -391,7 +611,7 @@ public class ApplicantForm implements Serializable {
             ", name='" + getName() + "'" +
             ", email='" + getEmail() + "'" +
             ", recevierEmail='" + getRecevierEmail() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", phone='" + getHomeNumber() + "'" +
             ", address='" + getAddress() + "'" +
             ", gender='" + getGender() + "'" +
             ", placeOfBirth='" + getPlaceOfBirth() + "'" +
@@ -400,10 +620,10 @@ public class ApplicantForm implements Serializable {
             ", citizenship='" + getCitizenship() + "'" +
             ", resume='" + getResume() + "'" +
             ", resumeContentType='" + getResumeContentType() + "'" +
-            ", employeeApplication='" + isEmployeeApplication() + "'" +
+//            ", employeeApplication='" + isEmployeeApplication() + "'" +
             ", employeeOrientation='" + isEmployeeOrientation() + "'" +
-            ", employeeIdentification='" + isEmployeeIdentification() + "'" +
-            ", securityClearance='" + isSecurityClearance() + "'" +
+
+//            ", securityClearance='" + isSecurityClearance() + "'" +
             ", medicalClearance='" + isMedicalClearance() + "'" +
             ", employeeWellness='" + isEmployeeWellness() + "'" +
             ", emergencyContact='" + isEmergencyContact() + "'" +
