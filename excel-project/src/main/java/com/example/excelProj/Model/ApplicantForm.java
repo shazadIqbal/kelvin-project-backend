@@ -143,6 +143,12 @@ public class ApplicantForm implements Serializable {
     @Column(name = "visa_expiry_date")
     private String visaExpiryDate;
 
+    @Column(name = "wage")
+    private String wage;
+
+    @Column(name = "position")
+    private String position;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -584,6 +590,22 @@ public class ApplicantForm implements Serializable {
 
     public void setVisaExpiryDate(String visaExpiryDate) {
         this.visaExpiryDate = visaExpiryDate;
+    }
+
+    public String getWage() {
+        return wage;
+    }
+
+    public void setWage(String wage) {
+        this.wage = wage;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @Override
