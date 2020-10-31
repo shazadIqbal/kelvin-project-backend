@@ -1,6 +1,7 @@
 package com.example.excelProj.Controller;
 
 import com.example.excelProj.Commons.ApiResponse;
+import com.example.excelProj.Dto.PersonalInformationDto;
 import com.example.excelProj.Model.ApplicantForm;
 import com.example.excelProj.Service.ApplicationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,13 @@ public class ApplicationFormController {
     private ApplicationFormService applicationFormService;
 
 
-
+//    @PostMapping("/applicant-form/personal-information")
+//    public ApiResponse<ApplicantForm> createPersonalInformationForm(@RequestBody PersonalInformationDto personalInformationDto)  {
+//
+//        ApplicantForm result = applicationFormService.savePersonalInformation(personalInformationDto);
+//
+//        return new ApiResponse<>(200,"success",result);
+//    }
     @PostMapping("/applicant-form")
     public ApiResponse<ApplicantForm> createApplicantForm(@RequestBody ApplicantForm applicantForm)  {
         if (applicantForm.getId() != null) {

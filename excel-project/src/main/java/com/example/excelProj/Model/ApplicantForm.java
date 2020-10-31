@@ -46,9 +46,14 @@ public class ApplicantForm implements Serializable {
 
     @Column(name = "gender")
     private String gender;
-
-    @Column(name = "place_of_birth")
-    private String placeOfBirth;
+    @Column(name = "city_place_of_birth")
+    private String cityForPlaceOfBirth;
+    @Column(name = "country_place_of_birth")
+    private String countryForPlaceOfBirth;
+    @Column(name = "province_place_of_birth")
+    private String provinceForPlaceOfBirth;
+    @Column
+    private String emergencyEmail;
 
     @Column(name = "date_of_birth")
     private Instant dateOfBirth;
@@ -92,6 +97,12 @@ public class ApplicantForm implements Serializable {
 
     @Column(name= "visa_work_options")
     private String visaWorkOptions;
+
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
 
     @Lob
     @Column(name= "social_media_links")
@@ -149,6 +160,61 @@ public class ApplicantForm implements Serializable {
     @Column(name = "position")
     private String position;
 
+    @Column(columnDefinition = "boolean default true")
+    private Boolean draft;
+
+    @Column
+    private String provinceForCompany;
+    @Column
+    private String cityForCompany;
+    @Column
+    private String countryForCompany;
+    @Column
+    private String addressForCompany;
+
+    @Column
+    private String companyName;
+
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getProvinceForCompany() {
+        return provinceForCompany;
+    }
+
+    public void setProvinceForCompany(String provinceForCompany) {
+        this.provinceForCompany = provinceForCompany;
+    }
+
+    public String getCityForCompany() {
+        return cityForCompany;
+    }
+
+    public void setCityForCompany(String cityForCompany) {
+        this.cityForCompany = cityForCompany;
+    }
+
+    public String getCountryForCompany() {
+        return countryForCompany;
+    }
+
+    public void setCountryForCompany(String countryForCompany) {
+        this.countryForCompany = countryForCompany;
+    }
+
+    public String getEmergencyEmail() {
+        return emergencyEmail;
+    }
+
+    public void setEmergencyEmail(String emergencyEmail) {
+        this.emergencyEmail = emergencyEmail;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -304,17 +370,12 @@ public class ApplicantForm implements Serializable {
         this.gender = gender;
     }
 
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
+    public String getAddressForCompany() {
+        return addressForCompany;
     }
 
-    public ApplicantForm placeOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-        return this;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
+    public void setAddressForCompany(String addressForCompany) {
+        this.addressForCompany = addressForCompany;
     }
 
     public Instant getDateOfBirth() {
@@ -608,6 +669,54 @@ public class ApplicantForm implements Serializable {
         this.position = position;
     }
 
+    public Boolean getDraft() {
+        return draft;
+    }
+
+    public void setDraft(Boolean draft) {
+        this.draft = draft;
+    }
+
+    public String getCityForPlaceOfBirth() {
+        return cityForPlaceOfBirth;
+    }
+
+    public void setCityForPlaceOfBirth(String cityForPlaceOfBirth) {
+        this.cityForPlaceOfBirth = cityForPlaceOfBirth;
+    }
+
+    public String getCountryForPlaceOfBirth() {
+        return countryForPlaceOfBirth;
+    }
+
+    public void setCountryForPlaceOfBirth(String countryForPlaceOfBirth) {
+        this.countryForPlaceOfBirth = countryForPlaceOfBirth;
+    }
+
+    public String getProvinceForPlaceOfBirth() {
+        return provinceForPlaceOfBirth;
+    }
+
+    public void setProvinceForPlaceOfBirth(String provinceForPlaceOfBirth) {
+        this.provinceForPlaceOfBirth = provinceForPlaceOfBirth;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -636,7 +745,7 @@ public class ApplicantForm implements Serializable {
             ", phone='" + getHomeNumber() + "'" +
             ", address='" + getAddress() + "'" +
             ", gender='" + getGender() + "'" +
-            ", placeOfBirth='" + getPlaceOfBirth() + "'" +
+
             ", dateOfBirth='" + getDateOfBirth() + "'" +
             ", visaDetails='" + getVisaDetails() + "'" +
             ", citizenship='" + getCitizenship() + "'" +

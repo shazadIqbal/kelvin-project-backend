@@ -1,8 +1,10 @@
 package com.example.excelProj.Service;
 
 import com.example.excelProj.Commons.ApiResponse;
+import com.example.excelProj.Dto.PersonalInformationDto;
 import com.example.excelProj.Model.ApplicantForm;
 import com.example.excelProj.Repository.ApplicantFormRepository;
+import com.example.excelProj.util.ConversationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ApplicationFormService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private ConversationUtil conversationUtil;
 
     Logger logger = LoggerFactory.getLogger(ApplicationFormService.class);
 
@@ -108,4 +113,11 @@ public class ApplicationFormService {
         return new ApiResponse<ApplicantForm>(404,"Applicant not Found",null);
     }
 
+
+    public ApplicantForm savePersonalInformation(PersonalInformationDto personalInformationDto) {
+        ApplicantForm applicantForm = conversationUtil.mapDtoToEntity(personalInformationDto,ApplicantForm.class);
+        applicantForm.setProfileId(personalInformationDto.getProfileNumber());
+        applicantForm.setDraft(true);
+        return applicationFormRepository.save(applicantForm);
+    }
 }
