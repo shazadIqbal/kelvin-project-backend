@@ -5,6 +5,7 @@ import com.example.excelProj.Dto.ViewLinkDto;
 import com.example.excelProj.Model.ViewLink;
 import com.example.excelProj.Repository.ViewLinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,15 @@ public class ViewLinkService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @Value("${spring.mail.username}")
+    private String username;
+
     public ApiResponse saveTokenForLink(ViewLinkDto viewLinkDto,Long id){
         String token = generateUUID();
         ViewLink viewLink = new ViewLink(viewLinkDto.getEmail(),token,"no");
         try {
             mailToUser(viewLinkDto.getEmail(),token,id);
-            return new ApiResponse(200,"Token saved",viewLinkRepository.save(viewLink));
+            return new ApiResponse(200,"Mail sent",viewLinkRepository.save(viewLink));
         }
         catch (Exception e){
             return new ApiResponse(404,"Token not saved",null);
@@ -62,9 +66,10 @@ public class ViewLinkService {
         try {
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setTo(recevierEmail);
+            msg.setFrom(username);
 
             msg.setSubject("Visit this link to see your profile");
-            msg.setText("link to your profile is : http://localhost:4200/viewportfolio/emaillink/"+id+"/" + token);
+            msg.setText("link to your profile is : https://workboard.ca/gigsterprofiles/#/viewportfolio/emaillink/"+id+"/" + token);
 
             javaMailSender.send(msg);
         }

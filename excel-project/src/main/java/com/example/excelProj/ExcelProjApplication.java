@@ -17,10 +17,10 @@ public class ExcelProjApplication extends SpringBootServletInitializer {
 	}
 
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(ExcelProjApplication.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(ExcelProjApplication.class);
+//	}
 
 	@Bean
 	public ModelMapper modelMapper() {
